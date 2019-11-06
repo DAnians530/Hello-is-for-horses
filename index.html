@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Hello is for horses</title>
+  <style>
+
+    /* Gave up on CSS. Trying everything with FLEX BOX */
+    body {
+        background: rgba(36, 15, 143, 0.589);
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    #horsecontainer {
+        order: 0;
+        width: 80%;
+        height: auto;
+        margin: auto;
+        position: relative;
+
+    }
+
+    @media (min-width: 1000px) {
+        #horsecontainer {
+            order: 0;
+            width: 50%;
+        }
+    }
+
+    #horsespeech {
+        background-color: white;
+        position: absolute;
+        /* top and left percentages are responsive and keep the text inside the image in the same place */
+        top: 10%;
+        left: 75%;
+        font-size: 2em;
+        width: auto;
+        height: auto;
+        text-align: center;
+        border: solid;
+        -webkit-border-radius: 4px;
+            border-radius: 4px;
+        z-index: 1;
+        display: none;
+    }
+
+    #horsespeech.show {
+        display: block;
+    }
+
+    #horse {
+        width: 100%;
+        height: auto;
+        border: solid;
+        border-color: rgba(0, 0, 0, 0.404);
+        z-index: 0;
+        -webkit-transition: transform 20s;  
+        transition: transform 20s ease-in;
+    }
+
+    #horse.leave {
+        transform: translate(-500%, 50%) rotate(20.5turn);
+    }
+
+    #directions {
+        order: 1;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1em;
+    }
+
+    #hellobutton {
+        padding: 0;
+        font: inherit;
+        font-size: 4vw;
+        border: solid;
+        background-color: whitesmoke;
+        cursor: pointer;
+        width: 20vw;
+        height: 8vw;
+    }
+
+  </style>
+
+</head>
+<body>
+    <div class="container"></div>
+        <div id="horsecontainer">
+            <h1 id="horsespeech">Hello</h1>
+            <img id="horse" src="https://images.pexels.com/photos/635499/pexels-photo-635499.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="brown horse in foreground with nature around">
+        </div> 
+
+        <div id="directions">
+            <h1>Hello is for horses.</h1>
+            <h1>Say hello to the horse:</h1>
+            <button id="hellobutton" alt="Say hello">Say hello</button>
+        </div>
+    </div>
+
+  <script>
+
+    function hello() {
+            document.getElementById("horsespeech").classList.toggle("show");
+            document.getElementById("hellobutton").style.display = "none";
+            setTimeout(speech2, 2000);
+            setTimeout(speech3, 5000);
+            setTimeout(goodbye, 6000);
+                function speech2() {
+                    document.getElementById("horsespeech").innerText = "Thanks for sayin hi";
+                };
+                function speech3() {
+                    document.getElementById("horsespeech").innerText = "Well goodbye now";
+                };
+                function goodbye() {
+                    document.getElementById("horse").classList.toggle("leave");
+                    document.getElementById("horsespeech").classList.toggle("show");
+                }
+    };
+
+
+
+    document.getElementById("hellobutton").addEventListener("click", hello);
+
+
+
+  </script>
+
+
+
+</body>
+</html>
